@@ -34,8 +34,13 @@ namespace P2P.App
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddUserSecrets(Assembly.GetEntryAssembly());
+                .AddEnvironmentVariables();
+
+#if DEBUG
+#pragma warning disable CS8604 // Possible null reference argument.
+            builder.AddUserSecrets(Assembly.GetEntryAssembly());
+#pragma warning restore CS8604 // Possible null reference argument.
+#endif
 
             var configuration = builder.Build();
 
