@@ -8,7 +8,6 @@ using P2PConnectHost;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace P2P.App
 {
