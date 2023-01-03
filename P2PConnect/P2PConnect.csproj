@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\P2PConnectClient\P2PConnectClient.csproj" />
+    <ProjectReference Include="..\P2PConnectHost\P2PConnectHost.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
