@@ -1,10 +1,24 @@
-﻿namespace P2PConnectHost
+﻿using System.Net.Sockets;
+using System.Text;
+
+namespace P2PConnectHost
 {
     public class ProcessHost : IProcessHost
     {
-        public async Task ProcessAsync()
+        public async Task ProcessAsync(int port)
         {
-            Console.WriteLine("Start Host");
+            var runListener = true;
+            
+            var udpServer = new UdpClient(228);
+            
+            while (runListener)
+            {
+                var result = await udpServer.ReceiveAsync();
+
+                var message = Encoding.UTF8.GetString(result.Buffer);
+
+                Console.WriteLine(result.RemoteEndPoint.Address + ":" + result.RemoteEndPoint.Port);
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace P2PConnect
             switch (args[0])
             {
                 case "-h":
-                    await _processHost.ProcessAsync();
+                    await _processHost.ProcessAsync(_applicationSettings.Port);
                     break;
                 case "-c":
                     await _processClient.ProcessAsync();

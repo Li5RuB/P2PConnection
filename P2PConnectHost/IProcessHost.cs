@@ -8,6 +8,6 @@ namespace P2PConnectHost
 {
     public interface IProcessHost
     {
-        Task ProcessAsync();
+        Task ProcessAsync(int port);
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P2PConnect.Configuration
+namespace P2PConnect.Service.Interfaces
 {
-    public interface IApplicationSettings
+    public interface IUIService
     {
-        int Port { get; set; }
     }
 }

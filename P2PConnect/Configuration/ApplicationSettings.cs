@@ -9,6 +9,11 @@ namespace P2PConnect.Configuration
 {
     public class ApplicationSettings : IApplicationSettings
     {
-        public void Initialize(IConfiguration configuration) { }
+        public int Port { get; set; }
+
+        public void Initialize(IConfiguration configuration) 
+        {
+            Port = configuration.GetValue<int>("port");
+        }
     }
 }
