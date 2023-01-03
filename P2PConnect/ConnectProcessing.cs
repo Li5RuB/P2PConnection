@@ -1,8 +1,6 @@
 ﻿using P2PConnect.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using P2PConnectClient;
+using P2PConnectHost;
 using System.Threading.Tasks;
 
 namespace P2PConnect
@@ -10,15 +8,36 @@ namespace P2PConnect
     public class ConnectProcessing
     {
         private readonly IApplicationSettings _applicationSettings;
+        private readonly IProcessClient _processClient;
+        private readonly IProcessHost _processHost;
 
-        public ConnectProcessing(IApplicationSettings applicationSettings) 
+        public ConnectProcessing(IApplicationSettings applicationSettings, IProcessClient processClient, IProcessHost processHost)
         {
             _applicationSettings = applicationSettings;
+            _processClient = processClient;
+            _processHost = processHost;
         }
 
-        public async Task ProcessAsync()
+        /// <summary>
+        /// args:
+        /// -h host
+        /// -c client
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public async Task ProcessAsync(string[] args)
         {
-            Console.WriteLine("Goo!!");
+            switch (args[0])
+            {
+                case "-h":
+                    await _processHost.ProcessAsync(_applicationSettings.Port);
+                    break;
+                case "-c":
+                    await _processClient.ProcessAsync();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -8,5 +8,6 @@ namespace P2PConnect.Configuration
 {
     public interface IApplicationSettings
     {
+        int Port { get; set; }
     }
 }

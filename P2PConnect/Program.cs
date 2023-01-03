@@ -3,13 +3,17 @@ using Castle.Windsor;
 using Microsoft.Extensions.Configuration;
 using P2PConnect;
 using P2PConnect.Configuration;
+using P2PConnectClient;
+using P2PConnectHost;
+using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace P2P.App
 {
     public static class Program
     {
-        public static async Task Main()
+        public static async Task Main(string[] agrs)
         {
             try
             {
@@ -19,7 +23,7 @@ namespace P2P.App
 
                 var rulesProcessing = windsorContainer.Resolve<ConnectProcessing>();
 
-                await rulesProcessing.ProcessAsync();
+                await rulesProcessing.ProcessAsync(agrs);
             }
             catch (Exception ex)
             {
@@ -31,8 +35,13 @@ namespace P2P.App
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddUserSecrets(Assembly.GetEntryAssembly());
+                .AddEnvironmentVariables();
+
+#if DEBUG
+#pragma warning disable CS8604 // Possible null reference argument.
+            builder.AddUserSecrets(Assembly.GetEntryAssembly());
+#pragma warning restore CS8604 // Possible null reference argument.
+#endif
 
             var configuration = builder.Build();
 
@@ -50,6 +59,13 @@ namespace P2P.App
             container.Register(Component.For<IApplicationSettings>().Instance(applicationSettings).LifestyleSingleton());
             
             container.Register(Component.For<ConnectProcessing>().LifestyleSingleton());
+
+            container.Register(
+                Classes.FromAssemblyContaining(typeof(ProcessClient))
+                    .Where(type => type.Name.Contains("Process")).WithService.DefaultInterfaces().LifestyleSingleton(),
+                Classes.FromAssemblyContaining(typeof(ProcessHost))
+                    .Where(type => type.Name.Contains("Process")).WithService.DefaultInterfaces().LifestyleSingleton()
+                );
 
             return container;
         }
