@@ -1,4 +1,7 @@
-﻿namespace P2PConnectClient
+﻿using System;
+using System.Threading.Tasks;
+
+namespace P2PConnectClient
 {
     public class ProcessClient : IProcessClient
     {
