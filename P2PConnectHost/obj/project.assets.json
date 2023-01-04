@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "P2PConnect.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/P2PConnect.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/P2PConnect.Service.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "P2PConnect.Service/1.0.0": {
+      "type": "project",
+      "path": "../P2PConnect.Service/P2PConnect.Service.csproj",
+      "msbuildProject": "../P2PConnect.Service/P2PConnect.Service.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "P2PConnect.Service >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\li5ru\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Govno\\P2PConnect\\P2PConnect.Service\\P2PConnect.Service.csproj": {
+              "projectPath": "E:\\Govno\\P2PConnect\\P2PConnect.Service\\P2PConnect.Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

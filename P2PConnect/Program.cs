@@ -3,9 +3,11 @@ using Castle.Windsor;
 using Microsoft.Extensions.Configuration;
 using P2PConnect;
 using P2PConnect.Configuration;
+using P2PConnect.Service.Services;
 using P2PConnectClient;
 using P2PConnectHost;
 using System;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -56,15 +58,24 @@ namespace P2P.App
         {
             var container = new WindsorContainer();
 
+            var udpClient = new UdpClient(applicationSettings.Port);
+
             container.Register(Component.For<IApplicationSettings>().Instance(applicationSettings).LifestyleSingleton());
             
             container.Register(Component.For<ConnectProcessing>().LifestyleSingleton());
+
+            container.Register(Component.For<UdpClient>().Instance(udpClient).LifestyleSingleton());
 
             container.Register(
                 Classes.FromAssemblyContaining(typeof(ProcessClient))
                     .Where(type => type.Name.Contains("Process")).WithService.DefaultInterfaces().LifestyleSingleton(),
                 Classes.FromAssemblyContaining(typeof(ProcessHost))
                     .Where(type => type.Name.Contains("Process")).WithService.DefaultInterfaces().LifestyleSingleton()
+                );
+
+            container.Register(
+                Classes.FromAssemblyContaining(typeof(SendService))
+                    .Where(type => type.Name.EndsWith("Service")).WithService.DefaultInterfaces().LifestyleSingleton()
                 );
 
             return container;
