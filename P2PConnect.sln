@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2PConnect", "P2PConnect\P2PConnect.csproj", "{DEC00364-B29E-4F38-A9A1-6DD0C6DC99D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2PConnect.Service", "P2PConnect.Service\P2PConnect.Service.csproj", "{8F1A8DE1-8AA3-456D-8805-1024E5EA7CC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2PConnect.Service", "P2PConnect.Service\P2PConnect.Service.csproj", "{8F1A8DE1-8AA3-456D-8805-1024E5EA7CC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2PConnectHost", "P2PConnectHost\P2PConnectHost.csproj", "{51B4D204-35BF-4624-A3CA-CFDA15E965A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2PConnectHost", "P2PConnectHost\P2PConnectHost.csproj", "{51B4D204-35BF-4624-A3CA-CFDA15E965A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2PConnectClient", "P2PConnectClient\P2PConnectClient.csproj", "{4C2A3871-B85B-4A88-AD3C-D2E1F3911BE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P2PConnectClient", "P2PConnectClient\P2PConnectClient.csproj", "{4C2A3871-B85B-4A88-AD3C-D2E1F3911BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

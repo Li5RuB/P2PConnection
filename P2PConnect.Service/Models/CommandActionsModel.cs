@@ -10,17 +10,14 @@ namespace P2PConnect.Service.Models
 {
     public class CommandActionsModel
     {
-        public CommandActionsModel(IPEndPoint iPEndPoint)
+        public CommandActionsModel(IPEndPoint iPEndPoint, string message)
         {
             IPEndPoint = iPEndPoint;
+            this.message = message;
         }
 
         public IPEndPoint IPEndPoint { get; set; }
 
-        public object? obj { get; set; }
-
-        public string? message { get; set; }
-
-        public int? port { get; set; }
+        public string message { get; set; }
     }
 }
