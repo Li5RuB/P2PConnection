@@ -36,7 +36,10 @@ namespace P2PConnectHost
 
                 Console.WriteLine(result.RemoteEndPoint.Address + ":" + result.RemoteEndPoint.Port);
 
-                commandActions[message].Invoke(new CommandActionsModel(result.RemoteEndPoint));
+                if (commandActions.ContainsKey(message))
+                {
+                    commandActions[message].Invoke(new CommandActionsModel(result.RemoteEndPoint));
+                }
             }
         }
 
