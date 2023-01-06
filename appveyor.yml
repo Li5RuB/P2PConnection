@@ -8,8 +8,10 @@ build:
 before_package:
 - ps: >-
     dotnet publish -r linux-x64 -c Release -o "C:\projects\P2PConnect\P2PConnectRelease"
+
+    7z a myapp.zip C:\projects\P2PConnect\P2PConnectRelease
 artifacts:
-- path: \P2PConnectRelease\*.*
+- path: myapp.zip
   name: P2PConnectRelease
 deploy:
 - provider: Environment
