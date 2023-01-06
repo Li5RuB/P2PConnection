@@ -5,3 +5,14 @@ before_build:
 build:
   project: P2PConnect.sln
   verbosity: minimal
+before_package:
+- ps: >-
+    dotnet publish -r linux-x64 -c Release -o "C:\projects\P2PConnect\P2PConnectRelease"
+artifacts:
+- path: MyProjectRelease
+  name: MyProjectRelease
+deploy:
+- provider: Environment
+  name: Production
+  on:
+    branch: Master

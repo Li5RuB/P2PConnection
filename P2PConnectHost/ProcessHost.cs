@@ -80,7 +80,7 @@ namespace P2PConnectHost
         }
 
         private async void CreateHost(CommandActionsModel obj)
-        {
+        { 
             _hosts.Add(new HostModel(obj.IPEndPoint, obj.message.Split(' ')[1]));
             await _sendService.SendAsync(obj.IPEndPoint, "YouHost");
         }
